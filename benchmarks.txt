@@ -1,5 +1,3 @@
 2dconv
 dwt53
 histeq
-lucas
-debayer
