@@ -11,4 +11,4 @@ cd ../pin
 git switch master -q
 #run script
 cd source/tools/approx
-python3 run_bucket.py $1 
+python3 run_every.py $1 
