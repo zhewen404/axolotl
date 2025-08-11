@@ -24,7 +24,7 @@ transfer_output_files = pin/source/tools/approx/$(CSV_NAME)
 transfer_output_remaps = "$(CSV_NAME)=$(TARGET_DIR)/$(CSV_NAME)"
 
 request_cpus = 1
-request_memory = 8GB
+request_memory = 2GB
 request_disk = 16GB
 
 # notify_user = zhewen.pan@wisc.edu
