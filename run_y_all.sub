@@ -1,0 +1,33 @@
+# axolotl submission script
+X          = $(X)
+Z          = $(Z)
+NUMCHUNK   = $(NUMCHUNK)
+BENCHMARK  = $(BENCHMARK)
+
+name = $(BENCHMARK)-x$(X)-z$(Z)-yc$(Process)-$(NUMCHUNK)
+
+TARGET_DIR = $(BENCHMARK)-x$(X)-z$(Z)-yc$(NUMCHUNK)
+CSV_NAME = $(BENCHMARK)-x$(X)-z$(Z)-yc$(ProcId)-$(NUMCHUNK).csv
+log    = logs/$(name).log
+error  = logs/$(name).err
+output = logs/$(name).out
+
+executable = run_y_all.sh 
+arguments = -b $(BENCHMARK) -x $(X) -z $(Z) -c $(NUMCHUNK) -d $(ProcId)
+
+should_transfer_files = YES
+when_to_transfer_output = ON_EXIT
+transfer_input_files = perfect, pin
+transfer_output_files = pin/source/tools/approx/$(CSV_NAME)
+
+# remap every job’s CSV into the shared target dir on the submit node
+transfer_output_remaps = "$(CSV_NAME)=$(TARGET_DIR)/$(CSV_NAME)"
+
+request_cpus = 1
+request_memory = 8GB
+request_disk = 16GB
+
+# notify_user = zhewen.pan@wisc.edu
+# notification = always
+
+queue $(NUMCHUNK)

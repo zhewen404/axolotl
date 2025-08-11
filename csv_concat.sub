@@ -1,0 +1,36 @@
+# csv aggregate script
+X          = $(X)
+Z          = $(Z)
+NUMCHUNK   = $(NUMCHUNK)
+BENCHMARK  = $(BENCHMARK)
+
+priority = 10
+
+name = $(BENCHMARK)-x$(X)-z$(Z)
+
+log    = logs/$(name).log
+error  = logs/$(name).err
+output = logs/$(name).out
+
+# VM_TYPE = kvm
+
+executable = csv_concat.sh
+arguments = -b $(BENCHMARK) -x $(X) -z $(Z) -c $(NUMCHUNK)
+
+TARGET_DIR = csv_$(BENCHMARK)
+INPUT_DIR = $(BENCHMARK)-x$(X)-z$(Z)-yc$(NUMCHUNK)
+
+should_transfer_files = YES
+when_to_transfer_output = ON_EXIT
+transfer_input_files = $(INPUT_DIR), csv_concat.py
+transfer_output_files = $(INPUT_DIR)/$(BENCHMARK)-x$(X)-z$(Z).csv
+transfer_output_remaps = "$(BENCHMARK)-x$(X)-z$(Z).csv=$(TARGET_DIR)/x$(X)-z$(Z).csv"
+
+request_cpus = 2
+request_memory = 8GB
+request_disk = 16GB
+
+notify_user = zhewen.pan@wisc.edu
+notification = always
+
+queue 1
