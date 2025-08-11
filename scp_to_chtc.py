@@ -88,6 +88,11 @@ remote_dir = remote_home + f'/{axolotl_dirname}/'
 scp.put(local_file, remote_path=remote_dir)
 print('done')
 
+local_file = "/home/zhewen/repo/axolotl/run_benchmark_seed.sh"
+remote_dir = remote_home + f'/{axolotl_dirname}/'
+scp.put(local_file, remote_path=remote_dir)
+print('done')
+
 # local_file = "/home/zhewen/repo/axolotl/test_pin.sh"
 # remote_dir = remote_home + f'/{axolotl_dirname}/'
 # scp.put(local_file, remote_path=remote_dir)
