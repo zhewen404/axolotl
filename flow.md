@@ -9,10 +9,10 @@
     - 5: random seed of error injection (zhewen's running 0-4, elise can run 5-9);
     - 100: 100 cpus per taks; 
     - debayer: benchmark name \{2dconv, histeq, dwt53, debayer\}
-    - note that when there are too many jobs in the queue, submitting more tends to take longer (?) so it's always good to check by running ``condor_q`` and see if there are 16 new jobs (corresponding to x=1...16) pushed into the queue, each with 100 subjobs. If there are some jobs say x=3 not properly spawning subjobs, then ``condor_rm`` the job and run ``./run_dag.sh 3 5 100 debayer``
-6. ``./run_benchmark_seed.sh 6 50 debayer # run a different random seed``
-7. ``./run_benchmark_seed.sh 7 50 debayer # run a different random seed``
-8. ``./run_benchmark_seed.sh 8 50 debayer # run a different random seed``
-9. ``./run_benchmark_seed.sh 9 50 debayer # run a different random seed``
+    - note that when there are too many jobs in the queue, submitting more tends to take longer (?) so it's always good to check by running ``condor_q`` and see if there are 16 new jobs (corresponding to x=1...16) pushed into the queue, each with 100 subjobs. If there are some jobs say x=3 not properly spawning subjobs, then ``condor_rm`` the job and in my experience it's good to wait for a bit (~10 min) and run ``./run_dag.sh 3 5 100 debayer``
+6. ``./run_benchmark_seed.sh 6 100 debayer # run a different random seed``
+7. ``./run_benchmark_seed.sh 7 100 debayer # run a different random seed``
+8. ``./run_benchmark_seed.sh 8 100 debayer # run a different random seed``
+9. ``./run_benchmark_seed.sh 9 100 debayer # run a different random seed; by running step 5-9, we are launching 5*100*16=8000 jobs for error injection``
 10. ``ls csv_debayer # check that it should contain x{1-16}-z{5-9}.csv; we can keep all these csvs since they are raw data, we can do any form of aggregation (gmean/amean/max/min) across z that makes sense in the next step``
 11. TODO: script to aggregate across 10 (z0-z9) runs; if 10 is too many, we can do 5 runs (z0-z4)
