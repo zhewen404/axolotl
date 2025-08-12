@@ -23,4 +23,4 @@ VARS CONCAT X="${X}" Z="${Z}" NUMCHUNK="${NUMCHUNK}" BENCHMARK="${BENCHMARK}"
 PARENT BATCH CHILD CONCAT
 EOF
 
-condor_submit_dag "$DAG"
+condor_submit_dag -f "$DAG"
